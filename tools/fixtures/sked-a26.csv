@@ -1,0 +1,43 @@
+kHz:75;Time(UTC):93;Days:59;ITU:49;Station:201;Lng:49;Target:62;Remarks:135;P:35;Start:60;Stop:60;
+16.3;0000-2400;;IND;VTX1 Indian Navy;;SAs;v;1;;
+690;0000-2400;;B;Rádio Clube do Pará;P;B;be;1;;
+873;0600-0800;;HNG;Nemzetiségi Rádió;HR;HNG;lh;2;;
+873;0600-0800;;HNG;Nemzetiségi Rádió;HR;HNG;p;2;;
+882;0030-0100;Su;IND;Trans World Radio;GU;SAs;/CLN-p;1;;
+1386;1500-1515;Mo-Fr;J;NHK Radio Japan;R;EEu;/LTU-v;1;;
+1695;1033-1048;;NOR;Telenor Kystradio North;NO;NEu;bv;1;;
+1925;2150-2205;;G;Humber Coastguard Wx;E;WEu;cu;2;;
+2799;0633-0643;;GRC;Olimpia Radio;E;SEE;i;1;;
+4212.5;0000-2400;;CHN;XSV Tianjin Radio;-TY;FE;tj;1;;
+5050;0000-0100;Su;USA;America250 DueDiligence;E;CAm;o;6;0806;3112
+5935;2300-1300;;USA;WWCR 2 Nashville, TN;E;NAm;n;4;;
+6080;2023-2400;;CHN;China National Radio 1;M;CHN;q;5;;[1019]
+6195;0900-1500;;D;Radio SE-TA2 DIGITAL;D;Eu;wh;6;0505;0605
+6865;1400-1500;;TWN;Sound of Hope;M;FE;;1;;
+7265;1230-1605;;CHN;CNR 2 China Business R.;M;CHN;as;1;;[0125]
+7396.8;0900-0905;;THA;HSW64 Bangkok Meteo Fax;;SEA;u;1;;
+7730;2100-2130;;TWN;Sound of Hope;M;FE;;1;;
+8459;0950-1210;;ALS;NOJ Fax Kodiak;;WNA;k;1;;[0921]
+9215;0200-1200;;TWN;Sound of Hope;M;FE;;1;;[0326]
+9440;0630-0700;;G;BBC;HA;WAf;/ASC;0;;
+9585;2030-2100;;CHN;China Radio Int.;HU;Eu;ka;0;;
+9710;0710-0820;Su;CVA;Radio Vaticana;RO;EEu;;2;;
+9840;1130-1200;;VTN;Voice of Vietnam;E;FE;s;1;;[0626]
+10000;1400-1500;Mo-Fr;ARG;LOL Buenos Aires;-TS;ARG;b;1;;[1121]
+11342;0000-2400;;USA;New York Radio;E;NAO;bg;1;;
+11635;2200-2300;;KRE;Voice of Korea;M;FE;u;1;;[0522]
+11765;0200-1200;;TWN;Sound of Hope;M;FE;;1;;
+11900;1230-1245;Su;AUS;Reach Beyond Australia;TAM;SIn;ku;0;;
+12055;0015-0045;;PHL;FEBC Manila;LAH;SEA;b;1;;[0923]
+12430;0200-1200;;TWN;Sound of Hope;M;FE;;1;;[0423]
+13261;0000-2400;;USA;San Francisco Radio SP;E;Oc;/HWA-m;1;;
+13670;2000-2100;;CHN;China Radio Int.;M;Eu;b;0;;
+13882.5;1800-1947;;D;DWD Pinneberg Met Fax;;Eu;pi;1;;[0126]
+14972;1430-1440;Tu,Sa;POL;E11 Polish Spy Numbers;E;;p;1;0109;3110[0924]
+15310;1600-1630;Th-Fr;CAN;Bible Voice;TIG;EAf;/D-n;0;;
+15500;2100-2200;Mo-Fr;E;Radio Exterior España;S;NAm;n;5;;
+15770;0000-2400;;USA;WRMI Radio Miami Int.;E;ENA;o;1;;[0724]
+16980;0200-1200;;TWN;Sound of Hope;M;FE;;1;;[0422]
+17640;0300-0400;;CHN;China Radio Int.;R;CAs;x;0;;
+17790;0300-0400;;ROU;Radio Romania DIGITAL;E;SAs;t;0;;
+21530;1200-1300;;TWN;Sound of Hope;M;FE;;1;;

@@ -1,0 +1,45 @@
+name: Import EiBi
+
+on:
+  schedule:
+    - cron: "37 4 * * *"
+  workflow_dispatch:
+    inputs:
+      havoc_radio_ref:
+        description: The havoc-radio branch, tag or commit whose converter is run
+        required: false
+        default: main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check out havoc-radio (anonymously)
+        env:
+          REF: ${{ inputs.havoc_radio_ref || 'main' }}
+        run: |
+          git init -q .havoc-radio
+          git -C .havoc-radio fetch -q --depth 1 https://github.com/hoverboardhavoc/havoc-radio.git "$REF"
+          git -C .havoc-radio checkout -q FETCH_HEAD
+          git -C .havoc-radio log -1 --format='havoc-radio %H %s'
+
+      - name: Test the import
+        run: python3 -m unittest discover -s tools -p 'test_*.py' -v
+
+      - name: Import
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python3 tools/import.py --converter .havoc-radio/radio/tools/guide_table.py
+
+      - name: Push
+        run: git push origin HEAD:main

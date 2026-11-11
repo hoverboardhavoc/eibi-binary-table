@@ -1,0 +1,40 @@
+kHz:75;Time(UTC):93;Days:59;ITU:49;Station:201;Lng:49;Target:62;Remarks:135;P:35;Start:60;Stop:60;
+16.3;0000-2400;;IND;VTX1 Indian Navy;;SAs;v;1;;
+690;0000-2400;;B;Rádio Clube do Pará;P;B;be;1;;
+873;0700-0900;;HNG;Nemzetiségi Rádió;HR;HNG;lh;2;;
+873;0700-0900;;HNG;Nemzetiségi Rádió;HR;HNG;p;2;;
+882;0030-0100;Sa;IND;Trans World Radio;OR;SAs;/CLN-p;1;;
+1386;0500-0530;;POL;Polskie Radio;UK;BLR;/LTU-v;1;;[0222]
+1696;0707-0717;;F;CROSS La Garde Radio Wx;F,E;WEu;g;2;;[0320]
+2054;0115-0130;;CAN;VAJ Prince Rupert Radio;E;WNA;di;2;;
+2830;0633-0643;;GRC;Olimpia Radio;E;SEE;k;1;;
+4316;0330-0410;;USA;NMG USCG New Orleans;E;NAm;nm;1;;[0124]
+5154.1;0000-2400;;RUS;Channel Marker A;-CW;RUS;as;1;;[0525]
+5985;1900-2000;;CHN;China Radio Int.;P;SAf;b;0;;
+6110;1900-2000;;ROU;Radio Romania DIGITAL;D;WEu;t;0;;
+6280;2300-2400;;TWN;Sound of Hope;M;FE;;1;;
+7038.5;0000-2400;;CZE;OK0EU Beacon M;-CW;Eu;pv;1;;
+7290;1500-1600;;CHN;China Radio Int.;R;CAs;q;0;;
+7410;1905-1920;Su;SWZ;Trans World Radio;P;AGL;;1;;[0324]
+7863;1715-1725;We,Fr;POL;E11 Polish Spy Numbers;E;;p;1;0105;3108[0723]
+8682;1120-1235;;USA;NMC Fax Pt Reyes CA;;WNA;pr;1;;[0717]
+9280.1;0200-1200;;TWN;Sound of Hope;M;FE;;1;;[1225]
+9520;1400-1500;;CHN;China Radio Int.;M;ME;u;0;;
+9665;1300-1400;;CHN;China Radio Int.;R;CAs;x;0;;
+9800;2300-0100;;CHN;China Radio Int.;S;SAm;ka;0;;
+9970;0100-0200;;TWN;Sound of Hope;M;FE;;1;;[0223]
+11279;0000-2400;;IRL;Shannon Aeradio D;E;NAO;s;1;;
+11635;2000-2050;;KRE;Voice of Korea KCBS;K;ME;u;1;;[0625]
+11790;2300-2400;;CHN;China Radio Int.;E;SEA;x;0;;
+11975;0100-0200;;TWN;Sound of Hope;M;FE;;1;;[1223]
+12160;1600-2100;;USA;WWCR 2 Nashville, TN;E;NAm;n;2;;
+12920;0000-0100;;TWN;Sound of Hope;M;FE;;1;;
+13562;1410-1420;Th,Sa;RUS;E07 Russian Spy Numbers;E;RUS;m;1;0107;3107[0721]
+13805;0200-1200;;TWN;Sound of Hope;M;FE;;1;;
+14800;1400-1500;;TWN;Sound of Hope;M;FE;;1;;
+15280;2100-2130;;TWN;Sound of Hope;M;FE;;1;;
+15500;1400-2200;SaSu;E;Radio Exterior España;S;NAm;n;5;;
+15785;0000-2400;;D;funklust DIGITAL;D;CEu;e;1;;[0624]
+17000;1500-1600;;TWN;Sound of Hope;M;FE;;1;;
+17700;1445-1500;Sa;USA;Trans World Radio;DES;SAs;/MDG;1;;
+18950;0100-0200;;TWN;Sound of Hope;M;FE;;1;;
