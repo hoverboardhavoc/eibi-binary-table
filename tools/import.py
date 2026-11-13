@@ -25,7 +25,7 @@ import urllib.error
 import urllib.request
 
 BASE_URL = "http://www.eibispace.de/dx/"
-USER_AGENT = "havoc-radio-guide (+https://github.com/hoverboardhavoc/havoc-radio-guide)"
+USER_AGENT = "eibi-binary-table (+https://github.com/hoverboardhavoc/eibi-binary-table)"
 MIN_ENTRIES, MAX_ENTRIES = 1000, 30000
 KEEPALIVE = datetime.timedelta(days=30)
 WORK_DIR = ".import"

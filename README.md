@@ -1,4 +1,4 @@
-# havoc-radio-guide
+# eibi-binary-table
 
 This repository holds the frequency guide for [Havoc Radio](https://github.com/hoverboardhavoc/havoc-radio): the
 schedule of what broadcasts on each LW, MW and SW frequency, as a table the radio reads straight from flash. The
