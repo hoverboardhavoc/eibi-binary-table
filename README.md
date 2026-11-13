@@ -1,5 +1,12 @@
 # eibi-binary-table
 
+The table format is defined in [FORMAT.md](FORMAT.md). The table and its manifest are downloaded from:
+
+```
+https://raw.githubusercontent.com/hoverboardhavoc/eibi-binary-table/main/v1/stations.bin
+https://raw.githubusercontent.com/hoverboardhavoc/eibi-binary-table/main/v1/manifest.json
+```
+
 This repository holds the frequency guide for [Havoc Radio](https://github.com/hoverboardhavoc/havoc-radio): the
 schedule of what broadcasts on each LW, MW and SW frequency, as a table the radio reads straight from flash. The
 radio and its web page fetch the table from here when the user asks for an update.
@@ -19,16 +26,7 @@ download, use, copy, or distribute these files or to use them within third-party
 | `v1/manifest.json` | The table's format, season, entry count, length, SHA-256, EiBi's date and the CSV it was made from. |
 | `state.json` | The season and the `ETag` and `Last-Modified` sent with the next check, and the time of the last check. |
 
-The table format is defined here, in [FORMAT.md](FORMAT.md), and the table is made by `tools/guide_table.py`.
-
-## Download
-
-The table and its manifest are downloaded from:
-
-```
-https://raw.githubusercontent.com/hoverboardhavoc/eibi-binary-table/main/v1/manifest.json
-https://raw.githubusercontent.com/hoverboardhavoc/eibi-binary-table/main/v1/stations.bin
-```
+The table is made by `tools/guide_table.py`.
 
 ## The import
 
