@@ -21,6 +21,15 @@ download, use, copy, or distribute these files or to use them within third-party
 
 The table format is defined here, in [FORMAT.md](FORMAT.md), and the table is made by `tools/guide_table.py`.
 
+## Download
+
+The table and its manifest are downloaded from:
+
+```
+https://raw.githubusercontent.com/hoverboardhavoc/eibi-binary-table/main/v1/manifest.json
+https://raw.githubusercontent.com/hoverboardhavoc/eibi-binary-table/main/v1/stations.bin
+```
+
 ## The import
 
 The workflow `.github/workflows/import.yml` runs daily at 04:37 UTC and can be started by hand. The CSV for the
