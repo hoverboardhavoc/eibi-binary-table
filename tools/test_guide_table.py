@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Checks tools/guide_table.py: the B26 and A26 EiBi CSVs (tools/fixtures/full/, kept byte for byte), built rows
 for every day form, time, frequency and text rule, the table's header, entries and string table, and --verify
-refusing each kind of damage. It also writes the tables havoc-radio's reader tests use (radio/test/guide/ there):
-b26.bin, b26.bin.json, a26.bin, rows.bin and sample.bin.
+refusing each kind of damage. The tables it writes are kept in OUT_DIR for inspection.
 
 usage: test_guide_table.py [OUT_DIR]   (OUT_DIR defaults to .test-out/)
 """
@@ -19,7 +18,7 @@ import guide_table as g  # noqa: E402
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(HERE), ".test-out")
 FIXTURES = os.path.join(HERE, "fixtures", "full")
-# Havoc Radio's UI prototype's sample guide (radio/ui/prototype.html, GUIDE_CSV), for the golden replay there.
+# A sample guide: rows as EiBi writes them, a Latin-1 name, dated rows and one duplicate.
 SAMPLE_ROWS = [
     "5940.1;0000-2400;;B;R\u00e1dio Voz Mission\u00e1ria;P;B",
     "5950;0000-0500;;USA;WRMI Radio Miami Int.;E;ENA",
@@ -266,7 +265,7 @@ def damage(t):
     check(g.main(["--verify", path]) == 1, "--verify exits 1 on damage")
 
 
-# Rows for havoc-radio's reader host tests (radio/test/test_guide.cpp there), written to OUT/rows.bin.
+# Rows for every day form, the 1 kHz window's edges and one frequency with 20 entries, written to OUT/rows.bin.
 HOST_ROWS = [
     b"8998.9;0000-2400;;X;Too low;E;Eu;;;;",
     b"8999;1100-1200;Mo-Fr;X;Weekday;E;Eu;;;;",
@@ -284,12 +283,12 @@ def host_tables():
     with open(os.path.join(OUT, "rows.bin"), "wb") as f:
         f.write(t)
     check(g.verify(t)["entries"] == len(HOST_ROWS), "rows.bin for the host tests")
-    # The UI prototype's sample guide, converted for havoc-radio's golden replay: OUT/sample.bin.
+    # The sample guide: OUT/sample.bin.
     rows = [r.encode("latin-1") + b";;;;" for r in SAMPLE_ROWS]
     t = g.build(entries(*rows), "B26", MODIFIED)
     with open(os.path.join(OUT, "sample.bin"), "wb") as f:
         f.write(t)
-    check(g.verify(t)["entries"] == 9, f"sample.bin: the prototype's {len(rows)} rows, one duplicate")
+    check(g.verify(t)["entries"] == 9, f"sample.bin: {len(rows)} rows, one duplicate")
 
 
 def main():

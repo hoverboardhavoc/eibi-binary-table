@@ -40,7 +40,7 @@ name in the same commit, so that the file's history runs through the seasons.
 
 The import is `tools/import.py` (Python standard library only), tested by `tools/test_import.py` against excerpts
 of EiBi's CSVs with a fake HTTP fetch. The converter is tested by `tools/test_guide_table.py` on EiBi's full B26
-and A26 CSVs (`tools/fixtures/full/`); it also writes the tables Havoc Radio's reader tests use to `.test-out/`.
+and A26 CSVs (`tools/fixtures/full/`) and on built rows, and writes its tables to `.test-out/`.
 
 ```
 python3 -m unittest discover -s tools -p 'test_*.py'
