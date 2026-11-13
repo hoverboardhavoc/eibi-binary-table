@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Import EiBi's schedule CSV and convert it into Havoc Radio's frequency guide table.
 
-usage: import.py --converter GUIDE_TABLE_PY [--repo DIR] [--now ISO8601]
+usage: import.py [--repo DIR] [--now ISO8601]
 
 One conditional GET of http://www.eibispace.de/dx/sked-<season>.csv, the season chosen by the UTC date. On 304
-nothing is downloaded. On 200 the CSV is converted with havoc-radio's radio/tools/guide_table.py and checked; when
+nothing is downloaded. On 200 the CSV is converted with tools/guide_table.py and checked; when
 every check passes, the CSV, v1/stations.bin, v1/manifest.json and state.json are committed together. When a check
 fails, nothing is committed and the exit status is 1. When nothing is committed and the last commit is more than
 30 days old, state.json is committed with the new check time, so that GitHub keeps the schedule enabled.
@@ -32,6 +32,7 @@ WORK_DIR = ".import"
 STATE = "state.json"
 TABLE = "v1/stations.bin"
 MANIFEST = "v1/manifest.json"
+CONVERTER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "guide_table.py")
 
 
 class CheckFailed(Exception):
@@ -97,15 +98,15 @@ def write_state(repo, state):
         f.write("\n")
 
 
-def load_converter(path):
-    spec = importlib.util.spec_from_file_location("guide_table", path)
+def load_converter():
+    spec = importlib.util.spec_from_file_location("guide_table", CONVERTER)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
 
 
-def run_converter(converter, *args):
-    p = subprocess.run([sys.executable, converter, *args], capture_output=True, text=True)
+def run_converter(*args):
+    p = subprocess.run([sys.executable, CONVERTER, *args], capture_output=True, text=True)
     sys.stdout.write(p.stdout)
     sys.stderr.write(p.stderr)
     return p.returncode
@@ -113,7 +114,7 @@ def run_converter(converter, *args):
 
 # ---- import ----
 
-def convert_and_commit(repo, converter, state, season, headers, body, now, bounds):
+def convert_and_commit(repo, state, season, headers, body, now, bounds):
     """Convert and check a downloaded CSV; when every check passes, commit it with the table."""
     work = os.path.join(repo, WORK_DIR)
     shutil.rmtree(work, ignore_errors=True)
@@ -126,17 +127,17 @@ def convert_and_commit(repo, converter, state, season, headers, body, now, bound
         with open(staged, "wb") as f:
             f.write(body)
         modified = headers.get("last-modified") or email.utils.format_datetime(now, usegmt=True)
-        if run_converter(converter, staged, "-o", table, "--season", season, "--modified", modified,
+        if run_converter(staged, "-o", table, "--season", season, "--modified", modified,
                          "--manifest", manifest, "--csv-name", new_csv) != 0:
             raise CheckFailed("the converter reported errors")
         with open(manifest, encoding="utf-8") as f:
             entries = json.load(f)["entries"]
         if not bounds[0] <= entries <= bounds[1]:
             raise CheckFailed(f"{entries} entries, not {bounds[0]} to {bounds[1]}")
-        if run_converter(converter, "--verify", table) != 0:
+        if run_converter("--verify", table) != 0:
             raise CheckFailed("the table failed --verify")
 
-        conv = load_converter(converter)
+        conv = load_converter()
         new_entries = set(conv.parse_csv(body)[0])
         old_csv = csv_path(state["season"]) if state.get("season") else None
         change = ""
@@ -177,7 +178,7 @@ def keepalive(repo, state, now):
     return message
 
 
-def run(repo, converter, now, fetch=http_fetch, bounds=(MIN_ENTRIES, MAX_ENTRIES)):
+def run(repo, now, fetch=http_fetch, bounds=(MIN_ENTRIES, MAX_ENTRIES)):
     """One import. Returns a line describing the outcome; raises CheckFailed when nothing may be committed."""
     state = load_state(repo)
     current = state.get("season")
@@ -192,7 +193,7 @@ def run(repo, converter, now, fetch=http_fetch, bounds=(MIN_ENTRIES, MAX_ENTRIES
     url = BASE_URL + f"sked-{season.lower()}.csv"
     status, resp_headers, body = fetch(url, headers)
     if status == 200 and body:
-        return convert_and_commit(repo, converter, state, season, resp_headers, body, now, bounds)
+        return convert_and_commit(repo, state, season, resp_headers, body, now, bounds)
     if status == 304 and not new_season:
         outcome = f"EiBi {season}: not modified"
     elif status == 404 and new_season and current:
@@ -205,14 +206,13 @@ def run(repo, converter, now, fetch=http_fetch, bounds=(MIN_ENTRIES, MAX_ENTRIES
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--converter", required=True, help="havoc-radio's radio/tools/guide_table.py")
     ap.add_argument("--repo", default=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     ap.add_argument("--now", help="the time to act as, ISO 8601 (default: the current time)")
     a = ap.parse_args(argv)
     now = (datetime.datetime.fromisoformat(a.now.replace("Z", "+00:00")) if a.now
            else datetime.datetime.now(datetime.timezone.utc))
     try:
-        print(run(a.repo, os.path.abspath(a.converter), now))
+        print(run(a.repo, now))
     except CheckFailed as e:
         print(f"import failed, nothing committed: {e}", file=sys.stderr)
         return 1

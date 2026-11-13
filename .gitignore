@@ -1,4 +1,4 @@
-.havoc-radio/
 .import/
 .test-work/
 __pycache__/
+.test-out/

@@ -1,7 +1,5 @@
 """Tests of tools/import.py: a dry run of the import against local copies of EiBi's CSV, with a fake HTTP fetch.
-
-The converter is havoc-radio's radio/tools/guide_table.py, found at .havoc-radio/ (where the workflow checks
-havoc-radio out) or at $GUIDE_TABLE. Nothing here contacts eibispace.de.
+Nothing here contacts eibispace.de.
 """
 import datetime
 import importlib.util
@@ -15,7 +13,6 @@ import unittest
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 FIXTURES = os.path.join(HERE, "fixtures")
-CONVERTER = os.environ.get("GUIDE_TABLE", os.path.join(ROOT, ".havoc-radio", "radio", "tools", "guide_table.py"))
 
 _spec = importlib.util.spec_from_file_location("guide_import", os.path.join(HERE, "import.py"))
 imp = importlib.util.module_from_spec(_spec)
@@ -64,8 +61,6 @@ def ok(body, modified=B26_MODIFIED, etag='"b26-1"'):
 class ImportTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        if not os.path.exists(CONVERTER):
-            raise FileNotFoundError(f"converter not found at {CONVERTER}")
         cls.env = dict(os.environ)
         os.environ.update(IDENTITY)
 
@@ -98,7 +93,7 @@ class ImportTest(unittest.TestCase):
         self.git("commit", "-q", "-m", "Seed", env=env)
 
     def run_import(self, fetch, now, bounds=(1, 30000)):
-        return imp.run(self.repo, CONVERTER, now, fetch=fetch, bounds=bounds)
+        return imp.run(self.repo, now, fetch=fetch, bounds=bounds)
 
     def commits(self):
         return int(self.git("rev-list", "--count", "HEAD"))
